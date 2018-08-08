@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@Page.Title</title> 
+    <link href="~/Content/css/Site.css" rel="stylesheet" /> 
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/script/bootstrap.min.js"></script>
+    <script src="~/Content/script/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body class="main-container">
+    <header>
+        <div class="header">
+            <div class="row">
+                <div class="float-left col-lg-4"> 
+                    <h3>ABC WEB</h3>
+                </div>
+                <div class="col-lg-5">
+                    &nbsp;
+                </div>
+                <div class="float-right col-lg-2">
+                    @if (Session["UserID"] != null)
+                    {
+                        <div>Welcome: @Session["UserID"]</div>
+                    }
+                </div>
+                <div class="float-left col-lg-1">                 
+                    <span><a id="btnHome" href="~/Login/index" class="homeicon"><img src="~/Content/images/home.png" class="homeicon" /></a></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div id="body" class="wrap">
+        @if (@TempData["Message"] != null)
+        {
+            <div style="border: 1px solid red">
+                @TempData["Message"].ToString()
+            </div>
+        }
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+    <footer>
+        <div class="footer">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - Praveen</p>
+            </div>
+        </div>
+    </footer>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

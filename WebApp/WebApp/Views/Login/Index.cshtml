@@ -1,0 +1,72 @@
+﻿@model WebApp.Models.LoginUser
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_SiteLayout.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#btnRedirect").click(function () {
+            window.location.href = "@Url.Action("Register", "Login")";
+        }); 
+        $("#btnForgot").click(function () {
+            var txtUserid = $('#txtUserid').val();
+            if (txtUserid == 'undefined' || txtUserid == null || txtUserid == '') {
+                alert('Please enter user id');
+                return false;
+            }
+            window.location.href = "/Login/ForgotPassword?userID=" + txtUserid;
+        });
+    });
+</script>
+@using (Html.BeginForm("Index", "Login", FormMethod.Post))
+{
+    <fieldset>
+        <div class="row">
+            <div class="col-lg-2">
+                               &nbsp;
+            </div>
+            <div class="col-lg-8">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <b>@Html.LabelFor(a => a.UserId)</b>
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.TextBoxFor(a => a.UserId, new { id="txtUserid",autocomplete = "off" })
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.ValidationMessageFor(u => u.UserId)
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-lg-4">
+                            <b>@Html.LabelFor(a => a.Password)</b>
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.PasswordFor(a => a.Password)
+                        </div>
+                        <div class="col-lg-2">
+                            @Html.ValidationMessageFor(u => u.Password)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <input id="btnLogin" type="submit" value="Login" />
+                        </div>
+                        <div class="col-lg-6">
+                            <input id="btnRedirect" type="button" value="Register" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div>
+                            <span class="psw"><a id="btnForgot" style="cursor:pointer; padding-right:15px;">Forgot password?</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+}

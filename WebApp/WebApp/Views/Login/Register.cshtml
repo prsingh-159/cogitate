@@ -1,0 +1,82 @@
+﻿@model WebApp.Models.RegisterUser
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/_SiteLayout.cshtml";
+}
+
+@using (Html.BeginForm("Register", "Login", FormMethod.Post))
+{
+    <fieldset>
+        <div class="">
+            <div class="row">
+                <div class="col-lg-2">
+                    &nbsp;
+                </div>
+                <div class="col-lg-10">
+                    <div class="modal-content">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <b>@Html.LabelFor(a => a.UserId)</b>
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(a => a.UserId, new { autocomplete = "off" })
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.ValidationMessageFor(u => u.UserId)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <b>@Html.LabelFor(a => a.Email)</b>
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.TextBoxFor(a => a.Email, new { autocomplete = "off" })
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.ValidationMessageFor(u => u.Email)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <b>@Html.LabelFor(a => a.Password)</b>
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.PasswordFor(a => a.Password)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.ValidationMessageFor(u => u.Password)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <b>@Html.LabelFor(a => a.ConfirmPassword)</b>
+                            </div>
+                            <div class="col-lg-6">
+                                @Html.PasswordFor(a => a.ConfirmPassword)
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.ValidationMessageFor(u => u.ConfirmPassword)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                &nbsp;
+                            </div>
+                            <div class="col-lg-6">
+                                <button>
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+            </div>
+        </div> 
+    </fieldset>
+}
